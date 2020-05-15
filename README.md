@@ -2,6 +2,8 @@
 
 A new Flutter application.
 
+I have used Libraries such as Rx dart, bloc, Dio to build this project.
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
