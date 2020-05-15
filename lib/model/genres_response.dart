@@ -3,8 +3,16 @@ import 'genres.dart';
 class GenresResponse {
 
   List<Genres> genres;
+  String error;
 
-  GenresResponse({this.genres});
+  GenresResponse({this.genres}) {
+    this.error = "";
+  }
+
+  GenresResponse.withError(String exception){
+    this.genres = List();
+    this.error = exception;
+  }
 
   GenresResponse.fromJson(Map<String, dynamic> json) {
     if (json['genres'] != null) {

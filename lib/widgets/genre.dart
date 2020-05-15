@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:moviejunction/model/genres_response.dart';
+import 'package:moviejunction/repository/movie_repository.dart';
 
 class Genre extends StatefulWidget {
   @override
@@ -8,6 +10,8 @@ class Genre extends StatefulWidget {
 
 class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
 
+  MovieRepository repository;
+  GenresResponse genresResponse;
   List<Widget> tabsList;
   TabController _tabController;
 
@@ -15,8 +19,16 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tabController = TabController(initialIndex: 0,length: 5,vsync: this);
+    repository = MovieRepository();
+    getMovieGenres();
+  }
 
+  void getMovieGenres() async {
+    GenresResponse response = await repository.getGenres();
+    setState(() {
+      genresResponse = response;
+      _tabController = TabController(initialIndex: 0,length: genresResponse.genres.length,vsync: this);
+    });
   }
 
 
@@ -25,50 +37,35 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
     return Container(
       height: 290,
       width: double.infinity,
-      child: DefaultTabController(
-        length: 5,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50.0), // here the desired height
-            child: AppBar(
+      child: Center(
+        child: genresResponse == null ? CircularProgressIndicator() : Container(
+          child: DefaultTabController(
+            length: genresResponse.genres.length,
+            child: Scaffold(
+              appBar: PreferredSize(
+                preferredSize: Size.fromHeight(45.0), // here the desired height
+                child: AppBar(
 
-              backgroundColor: Theme.of(context).primaryColor,
-              bottom: _tabBar(),
+                  backgroundColor: Theme.of(context).primaryColor,
+                  bottom: _tabBar(),
+                ),
+              ),
+              body: TabBarView(
+                controller: _tabController,
+                children: genresResponse.genres.map((genre) {
+                  return   Center(
+                    child: Container(
+                      height: 200,
+                      width: 100,
+                      color: Colors.green,
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
-          ),
-          body: TabBarView(
-            controller: _tabController,
-            children: <Widget>[
-              Container(
-                height: 200,
-                width: 100,
-                color: Colors.red,
-              ),
-              Container(
-                height: 200,
-                width: 100,
-                color: Colors.yellow,
-              ),
-              Container(
-                height: 200,
-                width: 100,
-                color: Colors.purple,
-              ),
-              Container(
-                height: 200,
-                width: 100,
-                color: Colors.green,
-              ),
-              Container(
-                height: 200,
-                width: 100,
-                color: Colors.red,
-              ),
-
-            ],
-          ),
+          )
         ),
-      )
+      ),
     );
   }
 
@@ -81,29 +78,12 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
       indicatorWeight: 3.0,
       unselectedLabelColor: Theme.of(context).primaryColorLight,
       labelColor: Colors.white,
-      tabs: <Widget>[
-          Text("ACTION", style: TextStyle(
-              fontSize: 15.0,
-              fontWeight: FontWeight.bold
-          )),
-        Text("ADVENTURE", style: TextStyle(
+      tabs: genresResponse.genres.map((genre){
+        return Text(genre.name.toUpperCase(), style: TextStyle(
             fontSize: 15.0,
             fontWeight: FontWeight.bold
-        )),
-        Text("ANIMATION", style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold
-        )),
-        Text("COMEDY", style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold
-        )),
-        Text("DOCUMENTARY", style: TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold
-        )),
-
-      ],
+        ));
+      }).toList(),
       isScrollable: true,
     );
   }
