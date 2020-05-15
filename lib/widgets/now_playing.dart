@@ -26,7 +26,10 @@ class _NowPlayingState extends State<NowPlaying> {
   }
 
   getMovieResponse() async {
-    movieResponse = await movieRepository.getNowPlayingMovies();
+    MovieResponse response = await movieRepository.getNowPlayingMovies();
+    setState(() {
+      movieResponse = response;
+    });
   }
 
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
+import 'package:moviejunction/widgets/genre.dart';
 import 'package:moviejunction/widgets/now_playing.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,11 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: <Widget>[
             NowPlaying(),
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: Colors.purple,
-            ),
+            Genre(),
             Container(
               height: 200,
               width: double.infinity,
