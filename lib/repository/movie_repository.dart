@@ -6,15 +6,16 @@ import 'dart:async';
 
 class MovieRepository {
 
-  final String apiKey = "8a1227b5735a7322c4a43a461953d4ff";
+  String _apiKey = "8a1227b5735a7322c4a43a461953d4ff";
   static final String mainUrl = "https://api.themoviedb.org/3";
   String _getPlayingUrl = '$mainUrl/movie/now_playing';
   String _getGenresUrl = '$mainUrl/genre/movie/list';
+  String _getGenreMoviesUrl = '$mainUrl/discover/movie';
   Dio _dio = Dio();
 
   Future<MovieResponse> getNowPlayingMovies() async {
     Map<String,dynamic> params = {
-      "api_key": apiKey,
+      "api_key": _apiKey,
       "language": "en-US",
       "page": 1
     };
@@ -31,7 +32,7 @@ class MovieRepository {
 
   Future<GenresResponse> getGenres() async {
     Map<String, dynamic> params = {
-      "api_key":apiKey,
+      "api_key":_apiKey,
       "language" : "en-US"
     };
     try {
@@ -42,6 +43,24 @@ class MovieRepository {
     } catch(error, stackTrace) {
       debugPrint('Request failed with status: -> $error and stack trace -> $stackTrace.');
       return GenresResponse.withError(error);
+    }
+  }
+
+  Future<MovieResponse> getGenreMovies(String genreId) async {
+    Map<String,dynamic> params = {
+      "api_key" : _apiKey,
+      "language" : "en-US",
+      "with_genres": genreId,
+    };
+    try {
+      Response response = await _dio.get(
+          _getGenreMoviesUrl, queryParameters: params);
+      MovieResponse movieResponse = MovieResponse.fromJson(response.data);
+      debugPrint('movie for genre id $genreId count ${movieResponse.results.length}');
+      return movieResponse;
+    } catch (error, stackTrace) {
+      debugPrint('Request failed with status: -> $error and stack trace -> $stackTrace.');
+      return MovieResponse.withError(error);
     }
   }
 

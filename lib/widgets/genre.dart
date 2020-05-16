@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviejunction/model/genres_response.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
+import 'package:moviejunction/widgets/genre_movie_list.dart';
 
 class Genre extends StatefulWidget {
   @override
@@ -17,10 +18,15 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     repository = MovieRepository();
     getMovieGenres();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
   }
 
   void getMovieGenres() async {
@@ -35,7 +41,7 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 290,
+      height: 320,
       width: double.infinity,
       child: Center(
         child: genresResponse == null ? CircularProgressIndicator() : Container(
@@ -53,13 +59,7 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
               body: TabBarView(
                 controller: _tabController,
                 children: genresResponse.genres.map((genre) {
-                  return   Center(
-                    child: Container(
-                      height: 200,
-                      width: 100,
-                      color: Colors.green,
-                    ),
-                  );
+                  return   GenreMovieList(genre.id);
                 }).toList(),
               ),
             ),
