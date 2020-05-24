@@ -43,13 +43,17 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: const EdgeInsets.only(top:8.0,left: 8.0,right: 8.0),
+                            padding: const EdgeInsets.only(
+                                top: 8.0, left: 8.0, right: 8.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                model.response.movieDetail.budget == 0 ? showDetails("BUDGET",
-                                    '--' + r"$") : showDetails("BUDGET",
-                                    '${model.response.movieDetail.budget}' + r"$"),
+                                model.response.movieDetail.budget == 0
+                                    ? showDetails("BUDGET", '--' + r"$")
+                                    : showDetails(
+                                        "BUDGET",
+                                        '${model.response.movieDetail.budget}' +
+                                            r"$"),
                                 showDetails("DURATION",
                                     '${model.response.movieDetail.runtime} min'),
                                 showDetails("RELEASE DATE",
@@ -101,7 +105,7 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top:8.0, left: 12.0),
+          padding: const EdgeInsets.only(top: 8.0, left: 12.0),
           child: Text(
             'GENRES',
             style: TextStyle(
@@ -120,7 +124,7 @@ class _MovieDetailsWidgetState extends State<MovieDetailsWidget> {
               itemBuilder: (context, index) {
                 return Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top:2.0, left: 10.0),
+                    padding: const EdgeInsets.only(top: 2.0, left: 10.0),
                     child: Container(
                       decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,

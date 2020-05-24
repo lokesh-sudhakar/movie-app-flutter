@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/locator.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
 
 class BaseViewModel extends ChangeNotifier {
-
   MovieRepository repository = locator<MovieRepository>();
 
   ViewState _state;
@@ -17,5 +14,4 @@ class BaseViewModel extends ChangeNotifier {
     this._state = state;
     notifyListeners();
   }
-
 }

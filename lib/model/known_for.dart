@@ -19,22 +19,22 @@ class KnownFor {
 
   KnownFor(
       {this.id,
-        this.video,
-        this.voteAverage,
-        this.title,
-        this.releaseDate,
-        this.originalLanguage,
-        this.originalTitle,
-        this.genreIds,
-        this.backdropPath,
-        this.adult,
-        this.overview,
-        this.posterPath,
-        this.popularity,
-        this.mediaType,
-        this.originalName,
-        this.name,
-        this.firstAirDate});
+      this.video,
+      this.voteAverage,
+      this.title,
+      this.releaseDate,
+      this.originalLanguage,
+      this.originalTitle,
+      this.genreIds,
+      this.backdropPath,
+      this.adult,
+      this.overview,
+      this.posterPath,
+      this.popularity,
+      this.mediaType,
+      this.originalName,
+      this.name,
+      this.firstAirDate});
 
   KnownFor.fromJson(Map<String, dynamic> json) {
     id = json['id'] is double ? (json['id'] as double).toInt() : json['id'];

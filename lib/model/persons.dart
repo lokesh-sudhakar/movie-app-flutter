@@ -12,13 +12,13 @@ class Person {
 
   Person(
       {this.adult,
-        this.gender,
-        this.name,
-        this.id,
-        this.knownForDepartment,
-        this.profilePath,
-        this.popularity,
-        this.mediaType});
+      this.gender,
+      this.name,
+      this.id,
+      this.knownForDepartment,
+      this.profilePath,
+      this.popularity,
+      this.mediaType});
 
   Person.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];

@@ -1,12 +1,10 @@
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/movie_detail_response.dart';
 
-import 'base_view_model.dart';
 import '../model/movie.dart';
-
+import 'base_view_model.dart';
 
 class MovieDetailsViewModel extends BaseViewModel {
-
   MovieDetailResponse _response;
   bool _isFavouriteMovie = false;
 
@@ -14,7 +12,7 @@ class MovieDetailsViewModel extends BaseViewModel {
 
   bool get isFavouriteMovie => this._isFavouriteMovie;
 
-   void getMovieDetails(int id) async {
+  void getMovieDetails(int id) async {
     setState(ViewState.Busy);
     MovieDetailResponse response = await repository.getMovieDetail(id);
     this._response = response;
@@ -30,7 +28,6 @@ class MovieDetailsViewModel extends BaseViewModel {
     }
     notifyListeners();
     return _isFavouriteMovie;
-
   }
 
   @override
@@ -38,5 +35,4 @@ class MovieDetailsViewModel extends BaseViewModel {
     // TODO: implement dispose
     super.dispose();
   }
-
 }

@@ -8,15 +8,13 @@ import '../../../model/movie_response.dart';
 import '../../../common_widgets/error.dart';
 
 class PopularMovieList extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
-    return  BaseView<MovieListViewModel>(
+    return BaseView<MovieListViewModel>(
       initState: (model) {
         model.getMoviesByPopularity();
       },
-      builder: (context,model,child) => Container(
+      builder: (context, model, child) => Container(
         width: double.infinity,
         color: Theme.of(context).primaryColor,
         child: Column(
@@ -26,7 +24,8 @@ class PopularMovieList extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("BEST POPULAR MOVIES",
+              child: Text(
+                "BEST POPULAR MOVIES",
                 style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                   fontSize: 12,
@@ -37,8 +36,11 @@ class PopularMovieList extends StatelessWidget {
               height: 280,
               color: Theme.of(context).primaryColor,
               child: Center(
-                child: model.state == ViewState.Busy ? CircularProgressIndicator() :
-                  model.response.error.isNotEmpty ? CustomErrorWidget(model.response.error) : MovieList(model.response),
+                child: model.state == ViewState.Busy
+                    ? CircularProgressIndicator()
+                    : model.response.error.isNotEmpty
+                        ? CustomErrorWidget(model.response.error)
+                        : MovieList(model.response),
               ),
             )
           ],
@@ -47,4 +49,3 @@ class PopularMovieList extends StatelessWidget {
     );
   }
 }
-

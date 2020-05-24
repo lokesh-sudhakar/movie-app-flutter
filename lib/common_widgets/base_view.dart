@@ -3,9 +3,7 @@ import 'package:moviejunction/bloc/base_view_model.dart';
 import 'package:moviejunction/locator.dart';
 import 'package:provider/provider.dart';
 
-
 class BaseView<T extends BaseViewModel> extends StatefulWidget {
-
   final Widget Function(BuildContext context, T value, Widget child) builder;
   final Function(T) initState;
 
@@ -16,7 +14,6 @@ class BaseView<T extends BaseViewModel> extends StatefulWidget {
 }
 
 class _BaseViewState<T extends BaseViewModel> extends State<BaseView<T>> {
-
   T model = locator<T>();
 
   @override

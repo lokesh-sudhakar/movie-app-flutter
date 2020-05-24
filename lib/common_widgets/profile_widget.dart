@@ -2,24 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfileWidget extends StatefulWidget {
-
   final String _photoUrl;
   final String _title;
   final String _subTitle;
 
-  ProfileWidget(this._title,this._subTitle,this._photoUrl);
+  ProfileWidget(this._title, this._subTitle, this._photoUrl);
 
   @override
-  _ProfileWidgetState createState() => _ProfileWidgetState(_title,_subTitle, _photoUrl);
+  _ProfileWidgetState createState() =>
+      _ProfileWidgetState(_title, _subTitle, _photoUrl);
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
-
   final String _photoUrl;
   final String _title;
   final String _subTitle;
 
-  _ProfileWidgetState(this._title,this._subTitle,this._photoUrl);
+  _ProfileWidgetState(this._title, this._subTitle, this._photoUrl);
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +36,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             child: CircleAvatar(
                 radius: 30,
                 backgroundColor: Theme.of(context).primaryColorLight,
-                backgroundImage: NetworkImage(_photoUrl)
-            ),
+                backgroundImage: NetworkImage(_photoUrl)),
           ),
           Padding(
             padding: EdgeInsets.all(4),
@@ -46,10 +44,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               _title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.bold
-              ),
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -60,8 +57,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                   fontSize: 8,
-                  fontWeight: FontWeight.normal
-              ),
+                  fontWeight: FontWeight.normal),
             ),
           )
         ],

@@ -17,7 +17,10 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text("Discover"),
         leading: IconButton(
-          icon: Icon(Icons.dehaze, color: Colors.white,),
+          icon: Icon(
+            Icons.dehaze,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Theme.of(context).appBarTheme.color,
         textTheme: Theme.of(context).appBarTheme.textTheme,
@@ -32,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
             TrendingPersons(),
             PopularMovieList(),
           ],
-
         ),
       ),
     );

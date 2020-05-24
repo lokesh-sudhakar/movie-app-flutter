@@ -1,9 +1,6 @@
 class ApiUrl {
-
   static const String API_KEY = "8a1227b5735a7322c4a43a461953d4ff";
   static const String BASE_URL = "https://api.themoviedb.org/3";
-
-
 
   static const String NOW_PLAYING_MOVIES_URL = '$BASE_URL/movie/now_playing';
   static const String GENRE_LIST_URL = '$BASE_URL/genre/movie/list';

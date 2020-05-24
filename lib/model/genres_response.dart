@@ -1,7 +1,6 @@
 import 'genres.dart';
 
 class GenresResponse {
-
   List<Genres> genres;
   String error = "";
 
@@ -9,7 +8,7 @@ class GenresResponse {
     this.error = "";
   }
 
-  GenresResponse.withError(String exception){
+  GenresResponse.withError(String exception) {
     this.genres = List();
     this.error = exception;
   }

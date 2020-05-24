@@ -21,7 +21,7 @@ class _ProfileListState extends State<ProfileList> {
     return Container(
       height: 120,
       child: ListView.builder(
-        shrinkWrap: true,
+          shrinkWrap: true,
           itemCount: _personsList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

@@ -11,10 +11,10 @@ class MovieResponse {
 
   MovieResponse(
       {this.results,
-        this.page,
-        this.totalResults,
-        this.dates,
-        this.totalPages});
+      this.page,
+      this.totalResults,
+      this.dates,
+      this.totalPages});
 
   MovieResponse.withError(String errorValue) {
     results = List();

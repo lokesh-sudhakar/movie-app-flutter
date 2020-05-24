@@ -1,5 +1,3 @@
-
-
 class Movie {
   double popularity;
   int voteCount;
@@ -18,19 +16,19 @@ class Movie {
 
   Movie(
       {this.popularity,
-        this.voteCount,
-        this.video,
-        this.posterPath,
-        this.id,
-        this.adult,
-        this.backdropPath,
-        this.originalLanguage,
-        this.originalTitle,
-        this.genreIds,
-        this.title,
-        this.voteAverage,
-        this.overview,
-        this.releaseDate});
+      this.voteCount,
+      this.video,
+      this.posterPath,
+      this.id,
+      this.adult,
+      this.backdropPath,
+      this.originalLanguage,
+      this.originalTitle,
+      this.genreIds,
+      this.title,
+      this.voteAverage,
+      this.overview,
+      this.releaseDate});
 
   Movie.fromJson(Map<String, dynamic> json) {
     popularity = json['popularity'];
@@ -44,7 +42,9 @@ class Movie {
     originalTitle = json['original_title'];
     genreIds = json['genre_ids'].cast<int>();
     title = json['title'];
-    voteAverage = json['vote_average'] is int ? (json['vote_average'] as int).toDouble() : json['vote_average'];
+    voteAverage = json['vote_average'] is int
+        ? (json['vote_average'] as int).toDouble()
+        : json['vote_average'];
     overview = json['overview'];
     releaseDate = json['release_date'];
   }

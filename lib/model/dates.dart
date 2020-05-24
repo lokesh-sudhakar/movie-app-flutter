@@ -1,5 +1,3 @@
-
-
 class Dates {
   String maximum;
   String minimum;

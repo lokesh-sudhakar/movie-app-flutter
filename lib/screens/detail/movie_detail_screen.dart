@@ -18,7 +18,6 @@ class MovieDetailScreen extends StatefulWidget {
 }
 
 class _MovieDetailScreenState extends State<MovieDetailScreen> {
-
   final Movie _movie;
 
   _MovieDetailScreenState(this._movie);
@@ -26,69 +25,68 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseView<MovieDetailsViewModel>(
-      builder: (context, model, child) => Scaffold(
-        backgroundColor: Theme.of(context).primaryColor,
-        body: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              pinned: true,
-              expandedHeight: 230,
-              floating: true,
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text(
-                  _movie.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                collapseMode: CollapseMode.parallax,
-                titlePadding: EdgeInsets.only(left: 50, bottom: 16),
-                background: Container(
-                  child: Stack(
-                    fit: StackFit.expand,
-                    overflow: Overflow.visible,
-                    children: <Widget>[
-                      Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://image.tmdb.org/t/p/original/" +
-                                        _movie.backdropPath))),
+        builder: (context, model, child) => Scaffold(
+              backgroundColor: Theme.of(context).primaryColor,
+              body: CustomScrollView(
+                slivers: <Widget>[
+                  SliverAppBar(
+                    pinned: true,
+                    expandedHeight: 230,
+                    floating: true,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Text(
+                        _movie.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                begin: FractionalOffset.topCenter,
-                                end: FractionalOffset.bottomCenter,
-                                colors: [
-                              Colors.black.withOpacity(0.0),
-                              Colors.black.withOpacity(0.9)
-                            ])),
+                      collapseMode: CollapseMode.parallax,
+                      titlePadding: EdgeInsets.only(left: 50, bottom: 16),
+                      background: Container(
+                        child: Stack(
+                          fit: StackFit.expand,
+                          overflow: Overflow.visible,
+                          children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                          "https://image.tmdb.org/t/p/original/" +
+                                              _movie.backdropPath))),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                    Colors.black.withOpacity(0.0),
+                                    Colors.black.withOpacity(0.9)
+                                  ])),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  SliverList(
+                    delegate: SliverChildListDelegate(<Widget>[
+                      _getRatingWidget(),
+                      _getOverviewDescriptionWidget(_movie.overview),
+                      MovieDetailsWidget(_movie.id),
+                      CastListWidget(_movie.id),
+                      SimilarMovieListWidget(_movie.id),
+                    ]),
+                  )
+                ],
               ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(<Widget>[
-                _getRatingWidget(),
-                _getOverviewDescriptionWidget(_movie.overview),
-                MovieDetailsWidget(_movie.id),
-                CastListWidget(_movie.id),
-                SimilarMovieListWidget(_movie.id),
-              ]),
-            )
-          ],
-        ),
-        floatingActionButton: _getFloatingActionButton(model),
-
-        ));
+              floatingActionButton: _getFloatingActionButton(model),
+            ));
   }
 
   Widget _getRatingWidget() {
@@ -100,9 +98,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           Text(
             _movie.voteAverage.toString(),
             style: TextStyle(
-                fontSize: 14,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
+                fontSize: 14, color: Colors.white, fontWeight: FontWeight.bold),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 5.0),
@@ -128,7 +124,6 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     );
   }
 
-
   Widget _getOverviewDescriptionWidget(String description) {
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -136,8 +131,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(left:12.0, top:16.0,right: 12.0),
-          child: Text("Overview".toUpperCase(),
+          padding: const EdgeInsets.only(left: 12.0, top: 16.0, right: 12.0),
+          child: Text(
+            "Overview".toUpperCase(),
             style: TextStyle(
               color: Theme.of(context).primaryColorLight,
               fontWeight: FontWeight.bold,
@@ -146,8 +142,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left:12.0, top:16.0,right: 12.0),
-          child: Text(description,
+          padding: const EdgeInsets.only(left: 12.0, top: 16.0, right: 12.0),
+          child: Text(
+            description,
             maxLines: 5,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(

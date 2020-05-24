@@ -1,4 +1,3 @@
-
 class Genres {
   int id;
   String name;

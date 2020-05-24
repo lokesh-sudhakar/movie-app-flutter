@@ -2,8 +2,7 @@ import 'package:moviejunction/bloc/base_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/movie_response.dart';
 
-class MovieListViewModel  extends BaseViewModel {
-
+class MovieListViewModel extends BaseViewModel {
   MovieResponse _response;
   int _currentPageIndex;
 
@@ -30,7 +29,7 @@ class MovieListViewModel  extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
-  void fetchSimilarMovies(int movieId) async{
+  void fetchSimilarMovies(int movieId) async {
     setState(ViewState.Busy);
     MovieResponse response = await repository.getSimilarMovies(movieId);
     this._response = response;
@@ -48,5 +47,4 @@ class MovieListViewModel  extends BaseViewModel {
   void dispose() {
     super.dispose();
   }
-
 }

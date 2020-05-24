@@ -33,85 +33,89 @@ class _MovieListState extends State<MovieList> {
   }
 
   Widget _getMovieCardWidget(Movie movie) {
-    return !shouldShowMovieCard(movie) ? _getEmptyWidget() : GestureDetector(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => MovieDetailScreen(movie),
-        ));
-      },
-      child: Container(
-        height: 250,
-        width: 150,
-        color: Theme.of(context).primaryColor,
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Container(
-              height: 200,
-              width: 130,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(3.0)),
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage(
-                      'https://image.tmdb.org/t/p/w200/' + movie.posterPath),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
-              child: Text(
-                movie.title,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-                maxLines: 2,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+    return !shouldShowMovieCard(movie)
+        ? _getEmptyWidget()
+        : GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetailScreen(movie),
+                  ));
+            },
+            child: Container(
+              height: 250,
+              width: 150,
+              color: Theme.of(context).primaryColor,
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  Text(
-                    movie.voteAverage.toString(),
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
+                  Container(
+                    height: 200,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(3.0)),
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage('https://image.tmdb.org/t/p/w200/' +
+                            movie.posterPath),
+                      ),
+                    ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 5.0),
-                    child: RatingBar(
-                      direction: Axis.horizontal,
-                      maxRating: 5,
-                      initialRating: movie.voteAverage / 2,
-                      glowColor: Theme.of(context).accentColor,
-                      unratedColor: Colors.white,
-                      allowHalfRating: true,
-                      onRatingUpdate: (rating) {
-                        debugPrint(rating.toString());
-                      },
-                      itemSize: 10,
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        color: Theme.of(context).accentColor,
+                    padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
+                    child: Text(
+                      movie.title,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
+                      maxLines: 2,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 4, 4, 4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          movie.voteAverage.toString(),
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5.0),
+                          child: RatingBar(
+                            direction: Axis.horizontal,
+                            maxRating: 5,
+                            initialRating: movie.voteAverage / 2,
+                            glowColor: Theme.of(context).accentColor,
+                            unratedColor: Colors.white,
+                            allowHalfRating: true,
+                            onRatingUpdate: (rating) {
+                              debugPrint(rating.toString());
+                            },
+                            itemSize: 10,
+                            itemBuilder: (context, _) => Icon(
+                              Icons.star,
+                              color: Theme.of(context).accentColor,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          );
   }
 
   bool shouldShowMovieCard(Movie movie) {

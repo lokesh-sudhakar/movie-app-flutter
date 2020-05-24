@@ -6,7 +6,6 @@ import 'package:moviejunction/common_widgets/error.dart';
 import 'profiles_list_widget.dart';
 
 class TrendingPersons extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BaseView<TrendingPersonListViewModel>(

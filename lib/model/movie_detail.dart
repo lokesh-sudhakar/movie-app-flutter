@@ -10,20 +10,19 @@ class MovieDetail {
   final String releaseDate;
   final int runtime;
 
-  MovieDetail(this.id,
-      this.adult,
-      this.budget,
-      this.genres,
-      this.companies,
-      this.releaseDate,
-      this.runtime);
+  MovieDetail(this.id, this.adult, this.budget, this.genres, this.companies,
+      this.releaseDate, this.runtime);
 
   MovieDetail.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         adult = json["adult"],
         budget = json["budget"],
-        genres = (json["genres"] as List).map((i) => new Genres.fromJson(i)).toList(),
-        companies = (json["production_companies"] as List).map((i) => new Company.fromJson(i)).toList(),
+        genres = (json["genres"] as List)
+            .map((i) => new Genres.fromJson(i))
+            .toList(),
+        companies = (json["production_companies"] as List)
+            .map((i) => new Company.fromJson(i))
+            .toList(),
         releaseDate = json["release_date"],
         runtime = json["runtime"];
 }

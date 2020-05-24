@@ -8,7 +8,6 @@ import 'package:moviejunction/common_widgets/movie_list.dart';
 import '../../../common_widgets/error.dart';
 
 class GenreMovieList extends StatefulWidget {
-
   final int _genreId;
 
   GenreMovieList(this._genreId);
@@ -18,14 +17,12 @@ class GenreMovieList extends StatefulWidget {
 }
 
 class _GenreMovieListState extends State<GenreMovieList> {
-
   final int _genreId;
 
   _GenreMovieListState(this._genreId);
 
   @override
   Widget build(BuildContext context) {
-
     return BaseView<MovieListViewModel>(
       initState: (model) {
         model.getMoviesByGenre(_genreId.toString());
@@ -33,12 +30,13 @@ class _GenreMovieListState extends State<GenreMovieList> {
       builder: (context, model, child) => Container(
         color: Theme.of(context).primaryColor,
         child: Center(
-          child: model.state == ViewState.Busy ? CircularProgressIndicator() :
-              model.response.error.isNotEmpty ? CustomErrorWidget(model.response.error) :
-          MovieList(model.response),
+          child: model.state == ViewState.Busy
+              ? CircularProgressIndicator()
+              : model.response.error.isNotEmpty
+                  ? CustomErrorWidget(model.response.error)
+                  : MovieList(model.response),
         ),
       ),
     );
-
   }
 }
