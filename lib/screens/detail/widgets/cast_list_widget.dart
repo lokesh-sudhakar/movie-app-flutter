@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/movie_cast_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/locator.dart';
 import 'package:moviejunction/model/cast.dart';
 import 'package:moviejunction/common_widgets/profile_widget.dart';
 import 'package:provider/provider.dart';
+import '../../../viewmodels/movie_cast_view_model.dart';
 
 class CastListWidget extends StatefulWidget {
   final int movieId;

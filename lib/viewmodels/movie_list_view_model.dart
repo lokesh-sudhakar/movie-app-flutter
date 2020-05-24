@@ -1,6 +1,6 @@
-import 'package:moviejunction/bloc/base_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/movie_response.dart';
+import 'package:moviejunction/viewmodels/base_view_model.dart';
 
 class MovieListViewModel extends BaseViewModel {
   MovieResponse _response;

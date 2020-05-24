@@ -3,7 +3,7 @@ import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/common_widgets/base_view.dart';
 import 'package:moviejunction/common_widgets/movie_list.dart';
 
-import '../../../bloc/movie_list_view_model.dart';
+import '../../../viewmodels/movie_list_view_model.dart';
 import '../../../model/movie_response.dart';
 import '../../../common_widgets/error.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/base_view_model.dart';
+import 'package:moviejunction/viewmodels/base_view_model.dart';
 import 'package:moviejunction/locator.dart';
 import 'package:provider/provider.dart';
 

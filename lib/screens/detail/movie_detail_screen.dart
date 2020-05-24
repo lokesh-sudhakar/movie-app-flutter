@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:moviejunction/bloc/movie_details_view_model.dart';
+import 'package:moviejunction/viewmodels/movie_details_view_model.dart';
 import 'package:moviejunction/common_widgets/base_view.dart';
 import 'widgets/cast_list_widget.dart';
 import 'widgets/movie_details_widget.dart';

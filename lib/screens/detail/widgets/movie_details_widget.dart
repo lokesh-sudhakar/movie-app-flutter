@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/movie_details_view_model.dart';
+import 'package:moviejunction/viewmodels/movie_details_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/genres.dart';
 import 'package:provider/provider.dart';

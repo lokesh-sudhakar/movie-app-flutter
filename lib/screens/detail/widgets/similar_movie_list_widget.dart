@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/movie_list_view_model.dart';
+import 'package:moviejunction/viewmodels/movie_list_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/common_widgets/base_view.dart';
 

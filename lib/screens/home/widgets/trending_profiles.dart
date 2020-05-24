@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/trending_person_list_bloc.dart';
+import 'package:moviejunction/viewmodels/trending_person_list_bloc.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/common_widgets/base_view.dart';
 import 'package:moviejunction/common_widgets/error.dart';

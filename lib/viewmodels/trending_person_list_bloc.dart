@@ -1,4 +1,4 @@
-import 'package:moviejunction/bloc/base_view_model.dart';
+import 'package:moviejunction/viewmodels/base_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/persons_response.dart';
 
