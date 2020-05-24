@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:moviejunction/screens/movie_detail_screen.dart';
-
 import '../model/movie.dart';
 import '../model/movie_response.dart';
+import '../screens/detail/movie_detail_screen.dart';
 
 class MovieList extends StatefulWidget {
   final MovieResponse _movieResponse;

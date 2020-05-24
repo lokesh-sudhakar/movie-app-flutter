@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/bloc/movie_detail_bloc.dart';
-import 'package:moviejunction/widgets/cast_list_widget.dart';
-import 'package:moviejunction/widgets/movie_details_widget.dart';
-import 'package:moviejunction/widgets/similar_movie_list_widget.dart';
-import '../model/movie.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:moviejunction/bloc/movie_details_view_model.dart';
+import 'package:moviejunction/common_widgets/base_view.dart';
+import 'widgets/cast_list_widget.dart';
+import 'widgets/movie_details_widget.dart';
+import 'widgets/similar_movie_list_widget.dart';
+
+import '../../model/movie.dart';
 
 class MovieDetailScreen extends StatefulWidget {
   final Movie _movie;
@@ -16,20 +18,15 @@ class MovieDetailScreen extends StatefulWidget {
 }
 
 class _MovieDetailScreenState extends State<MovieDetailScreen> {
+
   final Movie _movie;
-  MovieDetailBloc _movieDetailViewModel;
 
   _MovieDetailScreenState(this._movie);
 
   @override
-  void initState() {
-    super.initState();
-    _movieDetailViewModel = MovieDetailBloc();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BaseView<MovieDetailsViewModel>(
+      builder: (context, model, child) => Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         body: CustomScrollView(
           slivers: <Widget>[
@@ -80,40 +77,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             ),
             SliverList(
               delegate: SliverChildListDelegate(<Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 12.0, top: 16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        _movie.voteAverage.toString(),
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0),
-                        child: RatingBar(
-                          direction: Axis.horizontal,
-                          maxRating: 5,
-                          initialRating: _movie.voteAverage / 2,
-                          glowColor: Theme.of(context).accentColor,
-                          unratedColor: Colors.white,
-                          allowHalfRating: true,
-                          onRatingUpdate: (rating) {
-                            debugPrint(rating.toString());
-                          },
-                          itemSize: 15,
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
+                _getRatingWidget(),
                 _getOverviewDescriptionWidget(_movie.overview),
                 MovieDetailsWidget(_movie.id),
                 CastListWidget(_movie.id),
@@ -122,13 +86,48 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
             )
           ],
         ),
-        floatingActionButton: StreamBuilder<bool>(
-          stream: _movieDetailViewModel.outputIsFavMovie,
-          builder: (context, snapshot) {
-            return _getFloatingActionButton(snapshot.data);
-          },
+        floatingActionButton: _getFloatingActionButton(model),
+
         ));
   }
+
+  Widget _getRatingWidget() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 12.0, top: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            _movie.voteAverage.toString(),
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontWeight: FontWeight.bold),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5.0),
+            child: RatingBar(
+              direction: Axis.horizontal,
+              maxRating: 5,
+              initialRating: _movie.voteAverage / 2,
+              glowColor: Theme.of(context).accentColor,
+              unratedColor: Colors.white,
+              allowHalfRating: true,
+              onRatingUpdate: (rating) {
+                debugPrint(rating.toString());
+              },
+              itemSize: 15,
+              itemBuilder: (context, _) => Icon(
+                Icons.star,
+                color: Theme.of(context).accentColor,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
 
   Widget _getOverviewDescriptionWidget(String description) {
     return Column(
@@ -161,17 +160,17 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
     );
   }
 
-  Widget _getFloatingActionButton(bool isFav) {
+  Widget _getFloatingActionButton(MovieDetailsViewModel model) {
     return FloatingActionButton(
       backgroundColor: Theme.of(context).accentColor,
-      child: isFav == true
+      child: model.isFavouriteMovie == true
           ? Icon(
               Icons.favorite,
               color: Colors.red,
             )
           : Icon(Icons.favorite_border),
       onPressed: () {
-        _movieDetailViewModel.inputMovieSink.add(_movie);
+        model.addMovieToFavourite(_movie);
       },
     );
   }

@@ -4,7 +4,7 @@ import 'package:moviejunction/bloc/movie_cast_view_model.dart';
 import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/locator.dart';
 import 'package:moviejunction/model/cast.dart';
-import 'package:moviejunction/widgets/profile_widget.dart';
+import 'package:moviejunction/common_widgets/profile_widget.dart';
 import 'package:provider/provider.dart';
 
 class CastListWidget extends StatefulWidget {

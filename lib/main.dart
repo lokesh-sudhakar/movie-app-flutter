@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviejunction/locator.dart';
-import 'package:moviejunction/screens/home_screen.dart';
-import 'screens/home_screen.dart';
+import 'screens/home/home_screen.dart';
 
 void main()  {
   setupLocator();

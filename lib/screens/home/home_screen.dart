@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/widgets/genre.dart';
-import 'package:moviejunction/widgets/now_playing.dart';
-import 'package:moviejunction/widgets/popular_movie_list.dart';
 
-import '../widgets/popular_movie_list.dart';
-import '../widgets/trending_profiles.dart';
+import 'widgets/genre.dart';
+import 'widgets/now_playing.dart';
+import 'widgets/popular_movie_list.dart';
+import 'widgets/trending_profiles.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

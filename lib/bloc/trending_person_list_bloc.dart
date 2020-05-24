@@ -1,25 +1,27 @@
 
 import 'dart:async';
 
+import 'package:moviejunction/bloc/base_view_model.dart';
+import 'package:moviejunction/enums/view_state.dart';
 import 'package:moviejunction/model/persons_response.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
 
-class TrendingPersonListBloc {
+class TrendingPersonListViewModel extends BaseViewModel {
 
-  MovieRepository repository = new MovieRepository();
-  StreamController<PersonsResponse> streamController = StreamController<PersonsResponse>();
+  PersonsResponse _response;
 
-  Stream<PersonsResponse> get personStream => streamController.stream;
-
-  StreamSink<PersonsResponse> get personSink => streamController.sink;
+  PersonsResponse get response => this._response;
 
   void getTrendingPersons() async {
+    setState(ViewState.Busy);
     PersonsResponse response = await repository.getTrendingPersons();
-    personSink.add(response);
+    this._response = response;
+    setState(ViewState.Idle);
   }
 
-  dispose() {
-    streamController.close();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
-
 }

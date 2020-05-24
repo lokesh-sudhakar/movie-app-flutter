@@ -5,7 +5,7 @@ class PersonsResponse {
   List<Person> results;
   int totalPages;
   int totalResults;
-  String error;
+  String error = "";
 
   PersonsResponse(
       {this.page, this.results, this.totalPages, this.totalResults});

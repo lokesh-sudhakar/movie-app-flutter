@@ -3,7 +3,7 @@ import 'genres.dart';
 class GenresResponse {
 
   List<Genres> genres;
-  String error;
+  String error = "";
 
   GenresResponse({this.genres}) {
     this.error = "";
@@ -21,6 +21,7 @@ class GenresResponse {
         genres.add(new Genres.fromJson(v));
       });
     }
+    error = "";
   }
 
   Map<String, dynamic> toJson() {

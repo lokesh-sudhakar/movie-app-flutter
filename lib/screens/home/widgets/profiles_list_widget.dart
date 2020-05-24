@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviejunction/model/persons.dart';
-import 'profile_widget.dart';
+import '../../../common_widgets/profile_widget.dart';
 
 class ProfileList extends StatefulWidget {
   final List<Person> _personsList;
