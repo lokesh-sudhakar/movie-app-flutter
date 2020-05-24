@@ -1,9 +1,8 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moviejunction/model/movie_response.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
-import 'package:dots_indicator/dots_indicator.dart';
-import 'dart:async';
 
 class NowPlaying extends StatefulWidget {
   @override
@@ -35,6 +34,7 @@ class _NowPlayingState extends State<NowPlaying> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).primaryColorLight,
         width: double.infinity,
         height: 220,
         child: Center(

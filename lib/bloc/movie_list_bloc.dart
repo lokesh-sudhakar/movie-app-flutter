@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
+
 import 'package:moviejunction/model/movie_response.dart';
 import 'package:moviejunction/repository/movie_repository.dart';
-import 'dart:async';
-import '../model/movie.dart';
 
 
-class GenreMovieListBloc {
+class MovieListBloc {
 
   final MovieRepository repository =  MovieRepository();
 
@@ -18,9 +17,12 @@ class GenreMovieListBloc {
 
   getMoviesByGenre(String genreId) async {
       MovieResponse response = await repository.getGenreMovies(genreId);
-      if (response.error.isEmpty) {
-        movieStreamController.sink.add(response);
-      }
+      movieStreamController.sink.add(response);
+  }
+
+  getMoviesByPopularity() async {
+    MovieResponse response = await repository.getPopularMovies();
+    movieStreamController.sink.add(response);
   }
 
   dispose() {

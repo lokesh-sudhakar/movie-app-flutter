@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:moviejunction/repository/movie_repository.dart';
 import 'package:moviejunction/widgets/genre.dart';
 import 'package:moviejunction/widgets/now_playing.dart';
+import 'package:moviejunction/widgets/popular_movie_list.dart';
+
+import '../widgets/popular_movie_list.dart';
+import '../widgets/trending_profiles.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -27,16 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             NowPlaying(),
             Genre(),
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: Colors.red,
-            ),
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: Colors.green,
-            ),
+            TrendingPersons(),
+            PopularMovieList(),
           ],
 
         ),

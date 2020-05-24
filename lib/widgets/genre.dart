@@ -41,6 +41,7 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Theme.of(context).primaryColor,
       height: 320,
       width: double.infinity,
       child: Center(
@@ -51,7 +52,6 @@ class _GenreState extends State<Genre>  with SingleTickerProviderStateMixin{
               appBar: PreferredSize(
                 preferredSize: Size.fromHeight(45.0), // here the desired height
                 child: AppBar(
-
                   backgroundColor: Theme.of(context).primaryColor,
                   bottom: _tabBar(),
                 ),
