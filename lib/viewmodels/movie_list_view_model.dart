@@ -43,6 +43,13 @@ class MovieListViewModel extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
+  void fetchFavouriteMovies() async {
+    setState(ViewState.Busy);
+    this._response = MovieResponse();
+    this._response.results = await repository.getAllFavouriteMovies();
+    setState(ViewState.Idle);
+  }
+
   @override
   void dispose() {
     super.dispose();

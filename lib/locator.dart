@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:moviejunction/repository/repository.dart';
 import 'package:moviejunction/viewmodels/genre_list_view_model.dart';
 import 'package:moviejunction/viewmodels/movie_cast_view_model.dart';
 import 'package:moviejunction/viewmodels/movie_details_view_model.dart';
@@ -8,8 +9,10 @@ import 'package:moviejunction/repository/movie_repository.dart';
 
 GetIt locator = GetIt.instance;
 
+const bool USE_FAKE_IMPLEMENTATION = false;
+
 void setupLocator() {
-  locator.registerLazySingleton(() => MovieRepository());
+  locator.registerLazySingleton<Repository>(() => MovieRepository());
   locator.registerFactory(() => MovieDetailsViewModel());
   locator.registerFactory(() => MovieCastViewModel());
   locator.registerFactory(() => MovieListViewModel());

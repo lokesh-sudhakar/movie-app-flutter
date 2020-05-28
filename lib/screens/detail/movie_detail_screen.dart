@@ -25,6 +25,9 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return BaseView<MovieDetailsViewModel>(
+      initState: (model) {
+        model.checkIfMovieIsInFavouriteList(_movie.id);
+      },
         builder: (context, model, child) => Scaffold(
               backgroundColor: Theme.of(context).primaryColor,
               body: CustomScrollView(
@@ -159,15 +162,20 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
 
   Widget _getFloatingActionButton(MovieDetailsViewModel model) {
     return FloatingActionButton(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Colors.white,
       child: model.isFavouriteMovie == true
           ? Icon(
               Icons.favorite,
-              color: Colors.red,
+              color: Theme.of(context).primaryColor,
+        size: 35,
             )
-          : Icon(Icons.favorite_border),
+          : Icon(Icons.favorite_border,
+        color: Theme.of(context).primaryColor,
+        size: 35,
+
+      ),
       onPressed: () {
-        model.addMovieToFavourite(_movie);
+        model.onFavouriteFabClicked(_movie);
       },
     );
   }

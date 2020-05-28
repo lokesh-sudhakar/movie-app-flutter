@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:moviejunction/database/favourite_movies_dao.dart';
 import 'package:moviejunction/model/genres_response.dart';
+import 'package:moviejunction/model/movie.dart';
 import 'package:moviejunction/model/movie_response.dart';
+import 'package:moviejunction/repository/repository.dart';
 import '../model/persons_response.dart';
 import 'package:dio/dio.dart';
 import 'dart:async';
@@ -8,8 +11,10 @@ import '../model/movie_detail_response.dart';
 import '../model/cast_response.dart';
 import 'movie_urls.dart';
 
-class MovieRepository {
+class MovieRepository extends Repository {
+
   Dio _dio = Dio();
+  FavouriteMovieDao favouriteMovieDao = FavouriteMovieDao();
 
   Future<MovieResponse> getNowPlayingMovies() async {
     Map<String, dynamic> params = {
@@ -135,4 +140,29 @@ class MovieRepository {
       return MovieResponse.withError("$error");
     }
   }
+
+  @override
+  Future<bool> addFavouriteMovie(Movie movie) async {
+    bool isSuccessful = await favouriteMovieDao.insertMovie(movie);
+    return isSuccessful;
+  }
+
+  @override
+  Future<List<Movie>> getAllFavouriteMovies() async {
+    List<Movie> favMovies = await favouriteMovieDao.getMoviesFromDB();
+    return favMovies;
+  }
+
+  @override
+  Future<bool> removeMovieFromFavourites(int movieId) async {
+    bool isDeleteSuccessful = await favouriteMovieDao.deleteMovie(movieId);
+    return isDeleteSuccessful;
+  }
+
+  @override
+  Future<bool> isFavouriteMovie(int movieId) async {
+    bool isFavouriteMovie =  await favouriteMovieDao.isFavouriteMovie(movieId);
+    return isFavouriteMovie;
+  }
+
 }

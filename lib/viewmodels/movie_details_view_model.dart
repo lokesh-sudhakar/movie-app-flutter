@@ -5,6 +5,7 @@ import '../model/movie.dart';
 import 'base_view_model.dart';
 
 class MovieDetailsViewModel extends BaseViewModel {
+
   MovieDetailResponse _response;
   bool _isFavouriteMovie = false;
 
@@ -19,20 +20,24 @@ class MovieDetailsViewModel extends BaseViewModel {
     setState(ViewState.Idle);
   }
 
-  bool addMovieToFavourite(Movie movie) {
-    //todo need to implement favourites functionality
+  void checkIfMovieIsInFavouriteList(int movieId) async {
+    _isFavouriteMovie = await repository.isFavouriteMovie(movieId);
+    notifyListeners();
+  }
+
+  void onFavouriteFabClicked(Movie movie) {
     if (_isFavouriteMovie) {
+      repository.removeMovieFromFavourites(movie.id);
       _isFavouriteMovie = false;
     } else {
+      repository.addFavouriteMovie(movie);
       _isFavouriteMovie = true;
     }
     notifyListeners();
-    return _isFavouriteMovie;
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 }
