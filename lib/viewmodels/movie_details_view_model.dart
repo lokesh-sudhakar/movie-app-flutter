@@ -5,7 +5,6 @@ import '../model/movie.dart';
 import 'base_view_model.dart';
 
 class MovieDetailsViewModel extends BaseViewModel {
-
   MovieDetailResponse _response;
   bool _isFavouriteMovie = false;
 

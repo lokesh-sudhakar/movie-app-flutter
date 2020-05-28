@@ -15,31 +15,32 @@ class FavouriteMovieList extends StatelessWidget {
       builder: (context, model, child) => Container(
         width: double.infinity,
         color: Theme.of(context).primaryColor,
-        child: model.state == ViewState.Busy ? EmptyWidget() :
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "FAVOURITE MOVIES",
-                style: TextStyle(
-                  color: Theme.of(context).primaryColorLight,
-                  fontSize: 12,
-                ),
+        child: model.state == ViewState.Busy
+            ? EmptyWidget()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "FAVOURITE MOVIES",
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorLight,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 280,
+                    color: Theme.of(context).primaryColor,
+                    child: Center(
+                      child: MovieList(model.response),
+                    ),
+                  )
+                ],
               ),
-            ),
-            Container(
-              height: 280,
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: MovieList(model.response),
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

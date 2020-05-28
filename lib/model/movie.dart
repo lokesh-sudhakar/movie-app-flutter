@@ -9,8 +9,7 @@ class Movie {
   String releaseDate;
 
   Movie(
-      {
-      this.voteCount,
+      {this.voteCount,
       this.posterPath,
       this.id,
       this.backdropPath,

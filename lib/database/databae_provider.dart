@@ -6,7 +6,6 @@ import 'package:sqflite/sqflite.dart';
 
 //Responsibility - to provide single instance of db
 class DatabaseProvider {
-
   static DatabaseProvider _databaseHelper;
 
   Database _database;
@@ -19,7 +18,6 @@ class DatabaseProvider {
   String colOverView = "overview";
   String colPosterPath = "poster_path";
   String colBackdropPath = "backdrop_path";
-
 
   DatabaseProvider.getInstance();
 
@@ -38,8 +36,8 @@ class DatabaseProvider {
 
   Future<Database> _initializeDatabase() async {
     String path = await _getDatabasePath();
-    Database database = await openDatabase(path, version: 1, onCreate:
-        (Database db, int version) async {
+    Database database = await openDatabase(path, version: 1,
+        onCreate: (Database db, int version) async {
       db.execute("CREATE TABLE $tableName ($colId INTEGER PRIMARY KEY," +
           " $colTitle TEXT, $colVoteAverage DECIMAL , $colVoteCount INTEGER, $colReleaseDate TEXT," +
           "$colOverView TEXT, $colPosterPath TEXT, $colBackdropPath TEXT)");

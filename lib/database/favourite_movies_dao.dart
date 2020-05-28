@@ -6,7 +6,6 @@ import '../model/movie.dart';
 
 //Responsibility - to perform crud operations on db
 class FavouriteMovieDao {
-
   DatabaseProvider databaseProvider = DatabaseProvider();
 
   Future<bool> insertMovie(Movie movie) async {
@@ -45,14 +44,15 @@ class FavouriteMovieDao {
       return Movie.fromJson(movies[index]);
     });
   }
-  
+
   Future<bool> isFavouriteMovie(int movieId) async {
     Database db = await databaseProvider.database;
-    int count = Sqflite.firstIntValue(await db.rawQuery("SELECT COUNT(*) FROM ${databaseProvider.tableName} WHERE id = ?",['$movieId']));
+    int count = Sqflite.firstIntValue(await db.rawQuery(
+        "SELECT COUNT(*) FROM ${databaseProvider.tableName} WHERE id = ?",
+        ['$movieId']));
     if (count == 0) {
       return false;
     }
     return true;
   }
-  
 }

@@ -12,7 +12,6 @@ import '../model/cast_response.dart';
 import 'movie_urls.dart';
 
 class MovieRepository extends Repository {
-
   Dio _dio = Dio();
   FavouriteMovieDao favouriteMovieDao = FavouriteMovieDao();
 
@@ -161,8 +160,7 @@ class MovieRepository extends Repository {
 
   @override
   Future<bool> isFavouriteMovie(int movieId) async {
-    bool isFavouriteMovie =  await favouriteMovieDao.isFavouriteMovie(movieId);
+    bool isFavouriteMovie = await favouriteMovieDao.isFavouriteMovie(movieId);
     return isFavouriteMovie;
   }
-
 }
