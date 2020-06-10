@@ -5,7 +5,7 @@ import 'package:moviejunction/model/movie_detail_response.dart';
 import 'package:moviejunction/model/movie_response.dart';
 import 'package:moviejunction/model/persons_response.dart';
 
-abstract class Repository {
+abstract class API {
   Future<MovieResponse> getNowPlayingMovies();
 
   Future<GenresResponse> getGenres();

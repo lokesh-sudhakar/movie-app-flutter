@@ -17,7 +17,8 @@ class FavouriteMovieList extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: model.state == ViewState.Busy
             ? EmptyWidget()
-            : Column(
+            : model.response.results.isEmpty? EmptyWidget() :
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,

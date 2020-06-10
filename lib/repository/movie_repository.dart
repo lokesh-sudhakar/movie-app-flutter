@@ -3,7 +3,7 @@ import 'package:moviejunction/database/favourite_movies_dao.dart';
 import 'package:moviejunction/model/genres_response.dart';
 import 'package:moviejunction/model/movie.dart';
 import 'package:moviejunction/model/movie_response.dart';
-import 'package:moviejunction/repository/repository.dart';
+import 'package:moviejunction/repository/api.dart';
 import '../model/persons_response.dart';
 import 'package:dio/dio.dart';
 import 'dart:async';
@@ -11,7 +11,7 @@ import '../model/movie_detail_response.dart';
 import '../model/cast_response.dart';
 import 'movie_urls.dart';
 
-class MovieRepository extends Repository {
+class MovieRepository extends API {
   Dio _dio = Dio();
   FavouriteMovieDao favouriteMovieDao = FavouriteMovieDao();
 
